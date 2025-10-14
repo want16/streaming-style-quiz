@@ -69,7 +69,7 @@
     
     <!-- Social proof sub-headline -->
     <p class="text-white/80 text-sm mb-5 italic">
-      Watched by millions today — everyone’s talking about these.
+      If you haven’t seen these yet, you’re missing out.
     </p>
     
     <div id="trending5" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"></div>
@@ -135,23 +135,58 @@
 
     // Trending 5 — replace with live data later if desired
     const trending = [
-      { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Watched by 2.1M today." },
-      { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it." },
-      { title: "Wednesday", note: "#3 in the U.S.", views: "1.7M", blurb: "Trending for 3 weeks." },
-      { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king." },
-      { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues." }
+      { 
+         title: "Kpop Demon Hunters", 
+         note: "#1 in the U.S.", 
+         views: "2.4M", 
+         blurb: "Record-Breaking Show.", 
+         img: "https://image.tmdb.org/t/p/w500/your-kpop-poster.jpg" 
+      },
+      {
+        title: "Bridgerton", 
+        note: "#2 in the U.S.", 
+        views: "1.9M", 
+        blurb: "Everyone’s talking about it.", 
+        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
+      },
+      {
+        title: "Bridgerton", 
+        note: "#2 in the U.S.", 
+        views: "1.9M", 
+        blurb: "Everyone’s talking about it.", 
+        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
+      },
+      {
+        title: "Bridgerton", 
+        note: "#2 in the U.S.", 
+        views: "1.9M", 
+        blurb: "Everyone’s talking about it.", 
+        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
+      },
+      {
+        title: "Bridgerton", 
+        note: "#2 in the U.S.", 
+        views: "1.9M", 
+        blurb: "Everyone’s talking about it.", 
+        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
+      },
     ];
     
     const tgrid = document.getElementById('trending5');
-    
-    function tcard({ title, note, views, blurb }) {   
+
+    function tcard({ title, note, views, blurb, img }) {   
       const wrap = document.createElement('div');
       wrap.innerHTML = `
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-sm flex flex-col
                 transform transition will-change-transform hover:scale-[1.03]
                 hover:shadow-[0_0_20px_rgba(229,9,20,0.35)] focus-within:shadow-[0_0_20px_rgba(229,9,20,0.35)]">
-          <div class="h-40 bg-gradient-to-tr from-purple-700/50 via-fuchsia-600/40 to-rose-600/40"></div>
-          <div class="p-3 bg-black/50 mt-auto">
+      
+          <div class="relative h-40 overflow-hidden">
+            <img src="${img}" alt="${title}" 
+                 class="absolute inset-0 w-full h-full object-cover brightness-[.85] hover:brightness-100 transition" />
+          </div>
+      
+          <div class="p-3 bg-black/60 mt-auto">
             <div class="font-semibold">${title}</div>
             <div class="text-xs text-white/70">${note}</div>
             <div class="text-[11px] text-red-400 mt-1">🔥 Watched by ${views} today</div>
