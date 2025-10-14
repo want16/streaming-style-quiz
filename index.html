@@ -16,16 +16,26 @@
     .choice{transition:border-color .15s ease, background-color .15s ease}
     .choice[data-selected="true"]{border-color:white;background-color:rgba(255,255,255,.06)}
     .badge{font-size:11px;padding:.15rem .5rem;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:rgba(255,255,255,.8)}
+
+    /* ===== Cinematic result reveal ===== */
+    @keyframes sweep { from { width: 0% } to { width: 100% } }
+    @keyframes zoomIn { from { transform: scale(.96); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+    @keyframes softGlow { 0%,100% { box-shadow: 0 0 0 rgba(229,9,20,0) } 50% { box-shadow: 0 0 40px rgba(229,9,20,.35) } }
+    .transition-screen { background: rgba(0,0,0,.85); backdrop-filter: blur(6px); }
+    .result-reveal { animation: zoomIn .7s ease-out both; }
+    .result-name-glow { animation: softGlow 1.8s ease-in-out 1; }
+    .progress-bar { animation: sweep 1.6s ease-out forwards; }
   </style>
 </head>
 <body class="bg-black text-white">
+
   <!-- NAV -->
   <header class="absolute top-0 left-0 right-0 z-20">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <img src="logo.png" alt="Netflix Logo" class="h-24 w-auto" />
       </div>
-      <a href="#" 
+      <a href="#"
          class="bg-red-600 hover:bg-red-500 text-white font-semibold text-sm px-5 py-2 rounded-md shadow-md shadow-red-700/30 transition">
         Sign In
       </a>
@@ -35,7 +45,8 @@
   <!-- HERO -->
   <section class="relative min-h-[100dvh] flex items-center">
     <div class="absolute inset-0 overflow-hidden">
-      <div id="bg" class="hero-bg absolute inset-0" style="background-image:url('https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpgq=80&w=2000&auto=format&fit=crop');"></div>
+      <div id="bg" class="hero-bg absolute inset-0"
+           style="background-image:url('https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpg?q=80&w=2000&auto=format&fit=crop');"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/65"></div>
     </div>
 
@@ -44,21 +55,26 @@
         <h1 class="anim-1 text-4xl md:text-6xl font-extrabold leading-tight">What's your next binge?</h1>
         <p class="anim-2 text-white/85 text-lg md:text-xl mt-3">Unlimited movies, tv shows, and more.</p>
         <ul class="anim-3 mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2 text-white/75 text-sm">
-          <li>🏆 Award‑Winning Originals</li>
+          <li>🏆 Award-Winning Originals</li>
           <li>📺 Watch Anywhere</li>
           <li>💳 Cancel Anytime</li>
         </ul>
-        <!-- Only one CTA in hero: the quiz button -->
+
+        <!-- Softly elevated quiz CTA -->
         <div class="anim-4 mt-7 flex items-center justify-center">
-          <button id="open-quiz" class="inline-flex items-center justify-center px-7 py-4 rounded-full border border-white/30 hover:border-white font-semibold text-base transition">
+          <button id="open-quiz"
+            class="inline-flex items-center justify-center px-8 py-4 rounded-full
+                   border border-white/30 text-white/90
+                   bg-white/10 backdrop-blur-sm
+                   hover:bg-white/20 hover:border-white/50
+                   font-semibold text-base transition">
             Find Your Streaming Style
           </button>
         </div>
-        <div class="anim-5 mt-4 text-xs text-white/60">30‑day free trial • Ad free</div>
+        <div class="anim-5 mt-4 text-xs text-white/60">30-day free trial • Ad free</div>
       </div>
     </div>
   </section>
-
 
   <!-- Top 5 Trending -->
   <section class="max-w-6xl mx-auto px-4 mt-10" aria-labelledby="trending-title">
@@ -66,22 +82,17 @@
       <h3 id="trending-title" class="text-2xl font-bold">Trending Now</h3>
       <span class="badge">Updated daily</span>
     </div>
-    
-    <!-- Social proof sub-headline -->
-    <p class="text-white/80 text-sm mb-5 italic">
-      If you haven’t seen these yet, you’re missing out.
-    </p>
-    
+    <p class="text-white/80 text-sm mb-5 italic">If you haven’t seen these yet, you’re missing out.</p>
     <div id="trending5" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"></div>
   </section>
 
   <section class="py-12"></section>
 
-  <!-- Sticky CTA (kept) -->
+  <!-- Sticky CTA -->
   <div id="cta" class="fixed inset-x-0 bottom-0 z-30 pb-[max(16px,env(safe-area-inset-bottom))]">
     <div class="max-w-6xl mx-auto px-4">
       <div class="sticky-cta rounded-2xl border border-white/10 p-3 flex items-center justify-between gap-3">
-        <div class="text-sm text-white/85">Start your 30‑day free trial. Cancel anytime.</div>
+        <div class="text-sm text-white/85">Start your 30-day free trial. Cancel anytime.</div>
         <a href="#" class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 font-semibold shadow-lg shadow-red-600/20 transition">Start Watching Free</a>
       </div>
     </div>
@@ -119,6 +130,19 @@
     </div>
   </div>
 
+  <!-- Transition screen + audio -->
+  <div id="result-transition" class="transition-screen fixed inset-0 z-[45] hidden items-center justify-center p-6 text-center text-white">
+    <div class="max-w-md w-full">
+      <div class="text-xl md:text-2xl font-semibold">Analyzing your streaming DNA…</div>
+      <div class="mt-4 h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+        <div id="transition-progress" class="h-full bg-red-600 w-0 progress-bar"></div>
+      </div>
+      <div class="mt-3 text-xs text-white/60">Tuning recommendations just for you</div>
+    </div>
+  </div>
+  <audio id="reveal-sound" src="reveal.mp3" preload="auto"></audio>
+  <!-- (Add a short whoosh/ta-dum file named reveal.mp3 in the same folder if you want sound) -->
+
   <script>
     // Parallax
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -133,59 +157,25 @@
       onScroll();
     }
 
-    // Trending 5 — replace with live data later if desired
+    // Trending (with images)
     const trending = [
-      { 
-         title: "Kpop Demon Hunters", 
-         note: "#1 in the U.S.", 
-         views: "2.4M", 
-         blurb: "Record-Breaking Show.", 
-         img: "https://www.billboard.com/wp-content/uploads/2025/07/kpop-demon-hunters-billboard-1800.jpg?w=942&h=628&crop=1" 
-      },
-      {
-        title: "Bridgerton", 
-        note: "#2 in the U.S.", 
-        views: "1.9M", 
-        blurb: "Everyone’s talking about it.", 
-        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
-      },
-      {
-        title: "Wednesday", 
-        note: "#3 in the U.S.", 
-        views: "1.7M", 
-        blurb: "Trending for 3 weeks.", 
-        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
-      },
-      {
-        title: "The Office", 
-        note: "#4 in the U.S.", 
-        views: "1.4M", 
-        blurb: "Comfort rewatch king.", 
-        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
-      },
-      {
-        title: "Avatar: The Last Airbender", 
-        note: "#5 in the U.S.", 
-        views: "1.2M", 
-        blurb: "Live-action hype continues.", 
-        img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" 
-      },
+      { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Record-Breaking Show.", img: "https://www.billboard.com/wp-content/uploads/2025/07/kpop-demon-hunters-billboard-1800.jpg?w=942&h=628&crop=1" },
+      { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it.", img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" },
+      { title: "Wednesday", note: "#3 in the U.S.", views: "1.7M", blurb: "Trending for 3 weeks.", img: "https://image.tmdb.org/t/p/w500/wednesday.jpg" },
+      { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king.", img: "https://image.tmdb.org/t/p/w500/tK3w3f.jpg" },
+      { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues.", img: "https://image.tmdb.org/t/p/w500/avatar.jpg" }
     ];
-    
     const tgrid = document.getElementById('trending5');
-
-    function tcard({ title, note, views, blurb, img }) {   
+    function tcard({ title, note, views, blurb, img }) {
       const wrap = document.createElement('div');
       wrap.innerHTML = `
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-sm flex flex-col
-                transform transition will-change-transform hover:scale-[1.03]
-                hover:shadow-[0_0_20px_rgba(229,9,20,0.35)] focus-within:shadow-[0_0_20px_rgba(229,9,20,0.35)]">
-      
+                    transform transition will-change-transform hover:scale-[1.03]
+                    hover:shadow-[0_0_20px_rgba(229,9,20,0.35)] focus-within:shadow-[0_0_20px_rgba(229,9,20,0.35)]">
           <div class="relative h-40 overflow-hidden">
-            <img src="${img}" alt="${title}" 
+            <img src="${img}" alt="${title}"
                  class="absolute inset-0 w-full h-full object-cover brightness-[.85] hover:brightness-100 transition" />
           </div>
-      
           <div class="p-3 bg-black/60 mt-auto">
             <div class="font-semibold">${title}</div>
             <div class="text-xs text-white/70">${note}</div>
@@ -199,10 +189,10 @@
 
     // Personality styles
     const styles = {
-      COZY: { name: "Cozy Rewatcher", blurb: "You love familiar, feel-good stories that make the room warmer.", recs: ["Friends", "The Office", "Modern Family"] },
-      THRILL: { name: "Thrill Seeker", blurb: "High stakes, high pace. You’re here for edge-of-seat nights.", recs: ["Extraction", "Money Heist", "John Wick"] },
-      FAMILY: { name: "Feel‑Good Family", blurb: "You want all ages cheering and laughing together.", recs: ["Paddington", "The Mitchells vs The Machines", "Enola Holmes"] },
-      MIND: { name: "Mind‑Bender", blurb: "Bold ideas and twisty plots keep you hooked.", recs: ["Black Mirror", "Dark", "Inception"] }
+      COZY:   { name: "Cozy Rewatcher",  blurb: "You love familiar, feel-good stories that make the room warmer.", recs: ["Friends", "The Office", "Modern Family"] },
+      THRILL: { name: "Thrill Seeker",   blurb: "High stakes, high pace. You’re here for edge-of-seat nights.",    recs: ["Extraction", "Money Heist", "John Wick"] },
+      FAMILY: { name: "Feel-Good Family", blurb: "You want all ages cheering and laughing together.",               recs: ["Paddington", "The Mitchells vs The Machines", "Enola Holmes"] },
+      MIND:   { name: "Mind-Bender",     blurb: "Bold ideas and twisty plots keep you hooked.",                    recs: ["Black Mirror", "Dark", "Inception"] }
     };
 
     const quiz = [
@@ -210,23 +200,23 @@
           { label: "Cozy and heartwarming", style: "COZY" },
           { label: "Adrenaline and action", style: "THRILL" },
           { label: "Family time together", style: "FAMILY" },
-          { label: "Thought‑provoking and twisty", style: "MIND" }
+          { label: "Thought-provoking and twisty", style: "MIND" }
         ]},
       { q: "Pick a perfect setting:", options: [
           { label: "Small town / slice of life", style: "COZY" },
           { label: "Heists, spies, or standoffs", style: "THRILL" },
           { label: "Adventure that’s fun for everyone", style: "FAMILY" },
-          { label: "Sci‑fi, mysteries, or mind games", style: "MIND" }
+          { label: "Sci-fi, mysteries, or mind games", style: "MIND" }
         ]},
       { q: "How do you usually watch?", options: [
           { label: "Background comfort while I unwind", style: "COZY" },
           { label: "Focused, lights off, full immersion", style: "THRILL" },
-          { label: "With kids/parents/plus‑ones", style: "FAMILY" },
+          { label: "With kids/parents/plus-ones", style: "FAMILY" },
           { label: "Solo, because I like to analyze", style: "MIND" }
         ]},
       { q: "Pick a mood for tonight:", options: [
           { label: "Warm laughs", style: "COZY" },
-          { label: "Pulse‑pounding", style: "THRILL" },
+          { label: "Pulse-pounding", style: "THRILL" },
           { label: "Wholesome feels", style: "FAMILY" },
           { label: "Brainy suspense", style: "MIND" }
         ]},
@@ -290,16 +280,19 @@
     const resultModal = document.getElementById('result-modal');
     const resultBody = document.getElementById('result-body');
     const closeResult = document.getElementById('close-result');
+
+    // ===== Cinematic reveal on submit =====
     submitBtn.addEventListener('click', () => {
       const counts = { COZY:0, THRILL:0, FAMILY:0, MIND:0 };
       picks.forEach(k => counts[k]++);
       const winner = Object.keys(counts).sort((a,b) => counts[b]-counts[a])[0];
       const style = styles[winner];
 
+      // Build result content (hidden for now)
       resultBody.innerHTML = ''
-        + '<div class="text-center">'
+        + '<div class="result-reveal text-center">'
         +   '<div class="text-xl font-semibold mb-1">You are the</div>'
-        +   '<div class="text-3xl md:text-4xl font-extrabold">' + style.name + '</div>'
+        +   '<div class="text-3xl md:text-4xl font-extrabold result-name-glow">' + style.name + '</div>'
         +   '<div class="text-white/75 mt-2">' + style.blurb + '</div>'
         + '</div>'
         + '<div class="mt-6">'
@@ -314,23 +307,57 @@
       const recGrid = resultBody.querySelector('#rec-grid');
       style.recs.forEach(title => {
         const el = document.createElement('div');
-        el.className = 'rounded-2xl overflow-hidden border border-white/10 bg-white/5';
+        el.className = 'rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:scale-[1.02] transition';
         el.innerHTML = '\
           <div class="h-28 bg-gradient-to-tr from-red-600/40 via-fuchsia-600/30 to-indigo-600/30"></div>\
           <div class="p-3 text-sm font-semibold">' + title + '</div>';
         recGrid.appendChild(el);
       });
 
+      // Transition overlay + sound
+      const transitionScreen = document.getElementById('result-transition');
+      const progress = document.getElementById('transition-progress');
+      const revealSound = document.getElementById('reveal-sound');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // hide quiz modal
       modal.classList.add('hidden'); modal.classList.remove('flex');
-      resultModal.classList.remove('hidden'); resultModal.classList.add('flex');
+
+      // reset progress + show transition
+      progress.style.width = '0%';
+      transitionScreen.classList.remove('hidden'); transitionScreen.classList.add('flex');
+
+      // play sound (optional)
+      if (revealSound && revealSound.play) {
+        revealSound.currentTime = 0;
+        revealSound.play().catch(() => {});
+      }
+
+      // little emoji confetti pop (no deps)
+      (() => {
+        const burst = document.createElement('div');
+        burst.className = 'pointer-events-none fixed inset-0 z-[50] flex items-center justify-center';
+        burst.innerHTML = '<div class="text-4xl select-none">🎉 🎬 🍿 ✨</div>';
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 900);
+      })();
+
+      // after duration, hide transition, show result
+      const DUR = reduceMotion ? 300 : 1700;
+      setTimeout(() => {
+        transitionScreen.classList.add('hidden'); transitionScreen.classList.remove('flex');
+        resultModal.classList.remove('hidden'); resultModal.classList.add('flex');
+      }, DUR);
     });
+
     closeResult.addEventListener('click', () => { resultModal.classList.add('hidden'); resultModal.classList.remove('flex'); });
 
     // ESC closes modals
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        modal.classList.add('hidden'); modal.classList.remove('flex');
-        resultModal.classList.add('hidden'); resultModal.classList.remove('flex');
+        document.getElementById('quiz-modal').classList.add('hidden');
+        document.getElementById('result-modal').classList.add('hidden');
+        document.getElementById('result-transition').classList.add('hidden');
       }
     });
   </script>
