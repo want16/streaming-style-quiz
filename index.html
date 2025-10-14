@@ -60,13 +60,13 @@
   </section>
 
 
-
   <!-- Top 5 Trending -->
   <section class="max-w-6xl mx-auto px-4 mt-10" aria-labelledby="trending-title">
     <div class="flex items-center justify-between mb-2">
       <h3 id="trending-title" class="text-2xl font-bold">Trending Now</h3>
       <span class="badge">Updated daily</span>
     </div>
+    
     <!-- Social proof sub-headline -->
     <p class="text-white/80 text-sm mb-5 italic">
       Watched by millions today — everyone’s talking about these.
@@ -141,10 +141,12 @@
       { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king." },
       { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues." }
     ];
+    
     const tgrid = document.getElementById('trending5');
+    
     function tcard({ title, note, views, blurb }) {   
       const wrap = document.createElement('div');
-      wrap.innerHTML = '\
+      wrap.innerHTML = `
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-sm flex flex-col
                 transform transition will-change-transform hover:scale-[1.03]
                 hover:shadow-[0_0_20px_rgba(229,9,20,0.35)] focus-within:shadow-[0_0_20px_rgba(229,9,20,0.35)]">
