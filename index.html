@@ -62,11 +62,16 @@
 
 
   <!-- Top 5 Trending -->
-  <section class="max-w-6xl mx-auto px-4 mt-10">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="text-2xl font-bold">Trending Now</h3>
+  <section class="max-w-6xl mx-auto px-4 mt-10" aria-labelledby="trending-title">
+    <div class="flex items-center justify-between mb-2">
+      <h3 id="trending-title" class="text-2xl font-bold">Trending Now</h3>
       <span class="badge">Updated daily</span>
     </div>
+    <!-- Social proof sub-headline -->
+    <p class="text-white/80 text-sm mb-5 italic">
+      Watched by millions today — everyone’s talking about these.
+    </p>
+    
     <div id="trending5" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"></div>
   </section>
 
@@ -130,30 +135,34 @@
 
     // Trending 5 — replace with live data later if desired
     const trending = [
-      { title: "Stranger Things", note: "#1 in the U.S." },
-      { title: "Bridgerton", note: "#2 in the U.S." },
-      { title: "Wednesday", note: "#3 in the U.S." },
-      { title: "The Office (US)", note: "#4 in the U.S." },
-      { title: "Avatar: The Last Airbender", note: "#5 in the U.S." }
+      { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Watched by 2.1M today." },
+      { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it." },
+      { title: "Wednesday", note: "#3 in the U.S.", views: "1.7M", blurb: "Trending for 3 weeks." },
+      { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king." },
+      { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues." }
     ];
     const tgrid = document.getElementById('trending5');
-    function tcard(title, note) {
+    function tcard({ title, note, views, blurb }) {   
       const wrap = document.createElement('div');
       wrap.innerHTML = '\
-        <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-sm flex flex-col">\
-          <div class="h-40 bg-gradient-to-tr from-purple-700/50 via-fuchsia-600/40 to-rose-600/40"></div>\
-          <div class="p-3 bg-black/50 mt-auto">\
-            <div class="font-semibold">' + title + '</div>\
-            <div class="text-xs text-white/70">' + note + '</div>\
-          </div>\
-        </div>';
+        <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-sm flex flex-col
+                transform transition will-change-transform hover:scale-[1.03]
+                hover:shadow-[0_0_20px_rgba(229,9,20,0.35)] focus-within:shadow-[0_0_20px_rgba(229,9,20,0.35)]">
+          <div class="h-40 bg-gradient-to-tr from-purple-700/50 via-fuchsia-600/40 to-rose-600/40"></div>
+          <div class="p-3 bg-black/50 mt-auto">
+            <div class="font-semibold">${title}</div>
+            <div class="text-xs text-white/70">${note}</div>
+            <div class="text-[11px] text-red-400 mt-1">🔥 Watched by ${views} today</div>
+            <div class="text-[11px] text-white/60 mt-1 italic">${blurb || ""}</div>
+          </div>
+        </div>`;
       return wrap.firstElementChild;
     }
-    trending.forEach(x => tgrid.appendChild(tcard(x.title, x.note)));
+    trending.forEach(item => tgrid.appendChild(tcard(item)));
 
     // Personality styles
     const styles = {
-      COZY: { name: "Cozy Rewatcher", blurb: "You love familiar, feel-good stories that make the room warmer.", recs: ["Friends", "Gilmore Girls", "Queer Eye"] },
+      COZY: { name: "Cozy Rewatcher", blurb: "You love familiar, feel-good stories that make the room warmer.", recs: ["Friends", "The Office", "Modern Family"] },
       THRILL: { name: "Thrill Seeker", blurb: "High stakes, high pace. You’re here for edge-of-seat nights.", recs: ["Extraction", "Money Heist", "John Wick"] },
       FAMILY: { name: "Feel‑Good Family", blurb: "You want all ages cheering and laughing together.", recs: ["Paddington", "The Mitchells vs The Machines", "Enola Holmes"] },
       MIND: { name: "Mind‑Bender", blurb: "Bold ideas and twisty plots keep you hooked.", recs: ["Black Mirror", "Dark", "Inception"] }
@@ -185,8 +194,8 @@
           { label: "Brainy suspense", style: "MIND" }
         ]},
       { q: "Series or movie?", options: [
-          { label: "Either, as long as it’s comforting", style: "COZY" },
           { label: "Movie — big energy, big payoff", style: "THRILL" },
+          { label: "Either, as long as it’s comforting", style: "COZY" },
           { label: "Either, as long as we can watch together", style: "FAMILY" },
           { label: "Either, but clever is a must", style: "MIND" }
         ]}
