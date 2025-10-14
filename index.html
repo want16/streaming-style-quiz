@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Your Streaming Style • Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --blur-bg: rgba(0,0,0,.75); }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .anim-1{animation:fadeUp .6s ease-out both}.anim-2{animation:fadeUp .6s ease-out .08s both}.anim-3{animation:fadeUp .6s ease-out .16s both}.anim-4{animation:fadeUp .6s ease-out .24s both}.anim-5{animation:fadeUp .6s ease-out .32s both}
+    .hero-bg{will-change:transform;transform:scale(1);transition:transform .2s linear;background-position:center;background-size:cover}
+    @media (prefers-reduced-motion: reduce){.anim-1,.anim-2,.anim-3,.anim-4,.anim-5{animation:none!important;opacity:1;transform:none}.hero-bg{transition:none!important;transform:none!important}}
+    .sticky-cta{background:var(--blur-bg);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+    .modal{background:rgba(0,0,0,.6)}
+    .choice{transition:border-color .15s ease, background-color .15s ease}
+    .choice[data-selected="true"]{border-color:white;background-color:rgba(255,255,255,.06)}
+  </style>
+</head>
+<body class="bg-black text-white">
+  <header class="absolute top-0 left-0 right-0 z-20">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded bg-red-600"></div>
+        <span class="font-bold tracking-wide">Netflix</span>
+        <span class="ml-3 text-xs px-2 py-0.5 rounded border border-white/20 text-white/80">US</span>
+      </div>
+      <a href="#" class="text-sm text-white/85 hover:text-white">Sign In</a>
+    </div>
+  </header>
+
+  <section class="relative min-h-[100dvh] flex items-center">
+    <div class="absolute inset-0 overflow-hidden">
+      <div id="bg" class="hero-bg absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?q=80&w=2000&auto=format&fit=crop');"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/85"></div>
+    </div>
+
+    <div class="relative z-10 w-full">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <h1 class="anim-1 text-4xl md:text-6xl font-extrabold leading-tight">Stories that feel like home.</h1>
+        <p class="anim-2 text-white/85 text-lg md:text-xl mt-3">Unlimited hit shows. Start free. Cancel anytime.</p>
+        <ul class="anim-3 mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2 text-white/75 text-sm">
+          <li>🏆 Award‑Winning Originals</li>
+          <li>📱 Watch Anywhere</li>
+          <li>💳 Cancel Anytime</li>
+        </ul>
+        <div class="anim-4 mt-7 flex items-center justify-center gap-3">
+          <a href="#cta" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-red-600 hover:bg-red-500 font-semibold text-lg shadow-lg shadow-red-600/30 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black transition">
+            Start Your Story
+          </a>
+          <button id="open-quiz" class="inline-flex items-center justify-center px-6 py-4 rounded-full border border-white/30 hover:border-white font-semibold text-base transition">
+            Find Your Streaming Style
+          </button>
+        </div>
+        <div class="anim-5 mt-4 text-xs text-white/60">30‑day free trial • No ads on Premium.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 mt-12">
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="rounded-3xl p-6 bg-white/5 border border-white/10">
+        <div class="text-2xl">🏆</div>
+        <h4 class="text-xl font-bold mt-2">Exclusive & Award‑Winning</h4>
+        <p class="text-sm text-white/80 mt-2">Stranger Things, Bridgerton, Wednesday, and more.</p>
+      </div>
+      <div class="rounded-3xl p-6 bg-white/5 border border-white/10">
+        <div class="text-2xl">📱💻📺</div>
+        <h4 class="text-xl font-bold mt-2">Watch Anywhere</h4>
+        <p class="text-sm text-white/80 mt-2">Phone, laptop, TV — even offline.</p>
+      </div>
+      <div class="rounded-3xl p-6 bg-white/5 border border-white/10">
+        <div class="text-2xl">🧾</div>
+        <h4 class="text-xl font-bold mt-2">Cancel Anytime</h4>
+        <p class="text-sm text-white/80 mt-2">Plans for every home. No contracts.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="cta" class="fixed inset-x-0 bottom-0 z-30 pb-[max(16px,env(safe-area-inset-bottom))]">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="sticky-cta rounded-2xl border border-white/10 p-3 flex items-center justify-between gap-3">
+        <div class="text-sm text-white/85">Start your 30‑day free trial. Cancel anytime.</div>
+        <a href="#" class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 font-semibold shadow-lg shadow-red-600/20 transition">Start Watching Free</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div id="quiz-modal" class="modal fixed inset-0 z-40 hidden items-center justify-center p-4">
+    <div class="max-w-xl w-full rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
+        <h3 class="text-lg font-bold">Find Your Streaming Style</h3>
+        <button id="close-quiz" class="text-white/70 hover:text-white text-xl leading-none">×</button>
+      </div>
+      <div class="p-5">
+        <div id="quiz-progress" class="text-xs text-white/60 mb-3">Question 1 of 5</div>
+        <div id="quiz-question" class="text-base md:text-lg font-semibold">Loading…</div>
+        <div id="quiz-choices" class="mt-4 grid gap-2"></div>
+        <div class="mt-5 flex items-center justify-between">
+          <button id="quiz-prev" class="px-4 py-2 rounded-lg border border-white/20 text-white/85 hover:border-white hidden">Back</button>
+          <div class="flex-1"></div>
+          <button id="quiz-next" class="px-5 py-2 rounded-lg bg-white text-black font-semibold">Next</button>
+          <button id="quiz-submit" class="px-5 py-2 rounded-lg bg-red-600 text-white font-semibold hidden">See Results</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Modal -->
+  <div id="result-modal" class="modal fixed inset-0 z-40 hidden items-center justify-center p-4">
+    <div class="max-w-xl w-full rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
+        <h3 class="text-lg font-bold">Your Streaming Style</h3>
+        <button id="close-result" class="text-white/70 hover:text-white text-xl leading-none">×</button>
+      </div>
+      <div class="p-5" id="result-body"></div>
+    </div>
+  </div>
+
+  <script>
+    // Parallax
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const bg = document.getElementById('bg');
+    if (bg && !mediaQuery.matches) {
+      const onScroll = () => {
+        const y = window.scrollY || 0;
+        const s = Math.min(1 + (y / 3000), 1.06);
+        bg.style.transform = 'scale(' + s + ')';
+      };
+      document.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    // Personality styles
+    const styles = {
+      COZY: { name: "Cozy Rewatcher", blurb: "You love familiar, feel-good stories that make the room warmer.", recs: ["Friends", "Gilmore Girls", "Queer Eye"] },
+      THRILL: { name: "Thrill Seeker", blurb: "High stakes, high pace. You’re here for edge-of-seat nights.", recs: ["Extraction", "Money Heist", "John Wick"] },
+      FAMILY: { name: "Feel‑Good Family", blurb: "You want all ages cheering and laughing together.", recs: ["Paddington", "The Mitchells vs The Machines", "Enola Holmes"] },
+      MIND: { name: "Mind‑Bender", blurb: "Bold ideas and twisty plots keep you hooked.", recs: ["Black Mirror", "Dark", "Inception"] }
+    };
+
+    const quiz = [
+      { q: "What’s your ideal weekend energy?", options: [
+          { label: "Cozy and heartwarming", style: "COZY" },
+          { label: "Adrenaline and action", style: "THRILL" },
+          { label: "Family time together", style: "FAMILY" },
+          { label: "Thought‑provoking and twisty", style: "MIND" }
+        ]},
+      { q: "Pick a perfect setting:", options: [
+          { label: "Small town / slice of life", style: "COZY" },
+          { label: "Heists, spies, or standoffs", style: "THRILL" },
+          { label: "Adventure that’s fun for everyone", style: "FAMILY" },
+          { label: "Sci‑fi, mysteries, or mind games", style: "MIND" }
+        ]},
+      { q: "How do you usually watch?", options: [
+          { label: "Background comfort while I unwind", style: "COZY" },
+          { label: "Focused, lights off, full immersion", style: "THRILL" },
+          { label: "With kids/parents/plus‑ones", style: "FAMILY" },
+          { label: "Solo, because I like to analyze", style: "MIND" }
+        ]},
+      { q: "Pick a mood for tonight:", options: [
+          { label: "Warm laughs", style: "COZY" },
+          { label: "Pulse‑pounding", style: "THRILL" },
+          { label: "Wholesome feels", style: "FAMILY" },
+          { label: "Brainy suspense", style: "MIND" }
+        ]},
+      { q: "Series or movie?", options: [
+          { label: "Either, as long as it’s comforting", style: "COZY" },
+          { label: "Movie — big energy, big payoff", style: "THRILL" },
+          { label: "Either, as long as we can watch together", style: "FAMILY" },
+          { label: "Either, but clever is a must", style: "MIND" }
+        ]}
+    ];
+
+    let idx = 0;
+    const picks = [];
+    const modal = document.getElementById('quiz-modal');
+    const openBtn = document.getElementById('open-quiz');
+    const closeBtn = document.getElementById('close-quiz');
+    const qEl = document.getElementById('quiz-question');
+    const cEl = document.getElementById('quiz-choices');
+    const progressEl = document.getElementById('quiz-progress');
+    const prevBtn = document.getElementById('quiz-prev');
+    const nextBtn = document.getElementById('quiz-next');
+    const submitBtn = document.getElementById('quiz-submit');
+
+    function render() {
+      const item = quiz[idx];
+      progressEl.textContent = 'Question ' + (idx + 1) + ' of ' + quiz.length;
+      qEl.textContent = item.q;
+      cEl.innerHTML = '';
+      item.options.forEach((opt, i) => {
+        const b = document.createElement('button');
+        b.className = 'choice w-full text-left px-4 py-3 rounded-xl border border-white/15 hover:border-white/35';
+        b.dataset.index = i;
+        b.dataset.selected = (picks[idx] && picks[idx] === opt.style) ? 'true' : 'false';
+        b.innerHTML = opt.label;
+        b.addEventListener('click', () => {
+          picks[idx] = opt.style;
+          [...cEl.children].forEach(ch => ch.dataset.selected = 'false');
+          b.dataset.selected = 'true';
+          setTimeout(() => {
+            if (idx < quiz.length - 1) { idx++; render(); }
+            else { nextBtn.classList.add('hidden'); submitBtn.classList.remove('hidden'); }
+          }, 150);
+        });
+        cEl.appendChild(b);
+      });
+      prevBtn.classList.toggle('hidden', idx === 0);
+      nextBtn.classList.toggle('hidden', idx === quiz.length - 1);
+      submitBtn.classList.toggle('hidden', idx !== quiz.length - 1);
+    }
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden'); modal.classList.add('flex');
+      idx = 0; picks.length = 0;
+      render();
+    });
+    closeBtn.addEventListener('click', () => { modal.classList.add('hidden'); modal.classList.remove('flex'); });
+    modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); } });
+    prevBtn.addEventListener('click', () => { if (idx > 0) { idx--; render(); } });
+    nextBtn.addEventListener('click', () => { if (idx < quiz.length - 1) { idx++; render(); } });
+
+    const resultModal = document.getElementById('result-modal');
+    const resultBody = document.getElementById('result-body');
+    const closeResult = document.getElementById('close-result');
+    submitBtn.addEventListener('click', () => {
+      const counts = { COZY:0, THRILL:0, FAMILY:0, MIND:0 };
+      picks.forEach(k => counts[k]++);
+      const winner = Object.keys(counts).sort((a,b) => counts[b]-counts[a])[0];
+      const style = styles[winner];
+
+      resultBody.innerHTML = ''
+        + '<div class="text-center">'
+        +   '<div class="text-xl font-semibold mb-1">You are the</div>"
+        +   '<div class="text-3xl md:text-4xl font-extrabold">' + style.name + '</div>'
+        +   '<div class="text-white/75 mt-2">' + style.blurb + '</div>'
+        + '</div>'
+        + '<div class="mt-6">'
+        +   '<div class="text-sm text-white/80 mb-2">Recommended for you:</div>'
+        +   '<div class="grid sm:grid-cols-3 gap-3" id="rec-grid"></div>'
+        +   '<div class="text-xs text-white/50 mt-3">Availability may vary by region.</div>'
+        + '</div>';
+
+      const recGrid = resultBody.querySelector('#rec-grid');
+      style.recs.forEach(title => {
+        const el = document.createElement('div');
+        el.className = 'rounded-2xl overflow-hidden border border-white/10 bg-white/5';
+        el.innerHTML = '\
+          <div class="h-28 bg-gradient-to-tr from-red-600/40 via-fuchsia-600/30 to-indigo-600/30"></div>\
+          <div class="p-3 text-sm font-semibold">' + title + '</div>';
+        recGrid.appendChild(el);
+      });
+
+      modal.classList.add('hidden'); modal.classList.remove('flex');
+      resultModal.classList.remove('hidden'); resultModal.classList.add('flex');
+    });
+    closeResult.addEventListener('click', () => { resultModal.classList.add('hidden'); resultModal.classList.remove('flex'); });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modal.classList.add('hidden'); modal.classList.remove('flex');
+        resultModal.classList.add('hidden'); resultModal.classList.remove('flex');
+      }
+    });
+  </script>
+</body>
+</html>
