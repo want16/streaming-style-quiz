@@ -15,9 +15,11 @@
     .modal{background:rgba(0,0,0,.6)}
     .choice{transition:border-color .15s ease, background-color .15s ease}
     .choice[data-selected="true"]{border-color:white;background-color:rgba(255,255,255,.06)}
+    .badge{font-size:11px;padding:.15rem .5rem;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:rgba(255,255,255,.8)}
   </style>
 </head>
 <body class="bg-black text-white">
+  <!-- NAV -->
   <header class="absolute top-0 left-0 right-0 z-20">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2">
@@ -29,6 +31,7 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="relative min-h-[100dvh] flex items-center">
     <div class="absolute inset-0 overflow-hidden">
       <div id="bg" class="hero-bg absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?q=80&w=2000&auto=format&fit=crop');"></div>
@@ -44,11 +47,9 @@
           <li>📱 Watch Anywhere</li>
           <li>💳 Cancel Anytime</li>
         </ul>
-        <div class="anim-4 mt-7 flex items-center justify-center gap-3">
-          <a href="#cta" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-red-600 hover:bg-red-500 font-semibold text-lg shadow-lg shadow-red-600/30 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black transition">
-            Start Your Story
-          </a>
-          <button id="open-quiz" class="inline-flex items-center justify-center px-6 py-4 rounded-full border border-white/30 hover:border-white font-semibold text-base transition">
+        <!-- Only one CTA in hero: the quiz button -->
+        <div class="anim-4 mt-7 flex items-center justify-center">
+          <button id="open-quiz" class="inline-flex items-center justify-center px-7 py-4 rounded-full border border-white/30 hover:border-white font-semibold text-base transition">
             Find Your Streaming Style
           </button>
         </div>
@@ -57,6 +58,7 @@
     </div>
   </section>
 
+  <!-- Feature tiles -->
   <section class="max-w-6xl mx-auto px-4 mt-12">
     <div class="grid md:grid-cols-3 gap-4">
       <div class="rounded-3xl p-6 bg-white/5 border border-white/10">
@@ -77,6 +79,18 @@
     </div>
   </section>
 
+  <!-- Top 5 Trending -->
+  <section class="max-w-6xl mx-auto px-4 mt-10">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="text-2xl font-bold">Top 5 Trending in the U.S.</h3>
+      <span class="badge">Updated daily</span>
+    </div>
+    <div id="trending5" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"></div>
+  </section>
+
+  <section class="py-12"></section>
+
+  <!-- Sticky CTA (kept) -->
   <div id="cta" class="fixed inset-x-0 bottom-0 z-30 pb-[max(16px,env(safe-area-inset-bottom))]">
     <div class="max-w-6xl mx-auto px-4">
       <div class="sticky-cta rounded-2xl border border-white/10 p-3 flex items-center justify-between gap-3">
@@ -131,6 +145,29 @@
       document.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
     }
+
+    // Trending 5 — replace with live data later if desired
+    const trending = [
+      { title: "Stranger Things", note: "#1 in the U.S." },
+      { title: "Bridgerton", note: "#2 in the U.S." },
+      { title: "Wednesday", note: "#3 in the U.S." },
+      { title: "The Office (US)", note: "#4 in the U.S." },
+      { title: "Avatar: The Last Airbender", note: "#5 in the U.S." }
+    ];
+    const tgrid = document.getElementById('trending5');
+    function tcard(title, note) {
+      const wrap = document.createElement('div');
+      wrap.innerHTML = '\
+        <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-sm flex flex-col">\
+          <div class="h-40 bg-gradient-to-tr from-purple-700/50 via-fuchsia-600/40 to-rose-600/40"></div>\
+          <div class="p-3 bg-black/50 mt-auto">\
+            <div class="font-semibold">' + title + '</div>\
+            <div class="text-xs text-white/70">' + note + '</div>\
+          </div>\
+        </div>';
+      return wrap.firstElementChild;
+    }
+    trending.forEach(x => tgrid.appendChild(tcard(x.title, x.note)));
 
     // Personality styles
     const styles = {
@@ -241,6 +278,9 @@
         +   '<div class="text-sm text-white/80 mb-2">Recommended for you:</div>'
         +   '<div class="grid sm:grid-cols-3 gap-3" id="rec-grid"></div>'
         +   '<div class="text-xs text-white/50 mt-3">Availability may vary by region.</div>'
+        +   '<div class="mt-6 text-center">'
+        +     '<a href="#cta" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 font-semibold shadow-lg shadow-red-600/20 transition">Start Watching</a>'
+        +   '</div>'
         + '</div>';
 
       const recGrid = resultBody.querySelector('#rec-grid');
@@ -257,6 +297,8 @@
       resultModal.classList.remove('hidden'); resultModal.classList.add('flex');
     });
     closeResult.addEventListener('click', () => { resultModal.classList.add('hidden'); resultModal.classList.remove('flex'); });
+
+    // ESC closes modals
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         modal.classList.add('hidden'); modal.classList.remove('flex');
