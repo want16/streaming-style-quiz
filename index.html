@@ -345,8 +345,19 @@
       // after duration, hide transition, show result
       const DUR = reduceMotion ? 300 : 1700;
       setTimeout(() => {
-        transitionScreen.classList.add('hidden'); transitionScreen.classList.remove('flex');
-        resultModal.classList.remove('hidden'); resultModal.classList.add('flex');
+        // hide loading screen
+        transitionScreen.classList.add('hidden');
+        transitionScreen.classList.remove('flex');
+        
+        // show results
+        resultModal.classList.remove('hidden');
+        resultModal.classList.add('flex');
+        
+        // play sound AFTER results appear
+        if (revealSound && revealSound.play) {
+          revealSound.currentTime = 0;
+          revealSound.play().catch(() => {});
+        }
       }, DUR);
     });
 
