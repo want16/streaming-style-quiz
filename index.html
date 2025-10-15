@@ -327,11 +327,6 @@
       progress.style.width = '0%';
       transitionScreen.classList.remove('hidden'); transitionScreen.classList.add('flex');
 
-      // play sound (optional)
-      if (revealSound && revealSound.play) {
-        revealSound.currentTime = 0;
-        revealSound.play().catch(() => {});
-      }
 
       // little emoji confetti pop (no deps)
       (() => {
