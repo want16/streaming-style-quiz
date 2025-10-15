@@ -17,7 +17,7 @@
     .choice[data-selected="true"]{border-color:white;background-color:rgba(255,255,255,.06)}
     .badge{font-size:11px;padding:.15rem .5rem;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:rgba(255,255,255,.8)}
 
-    /* ===== Cinematic result reveal ===== */
+    /* Cinematic result reveal */
     @keyframes sweep { from { width: 0% } to { width: 100% } }
     @keyframes zoomIn { from { transform: scale(.96); opacity: 0 } to { transform: scale(1); opacity: 1 } }
     @keyframes softGlow { 0%,100% { box-shadow: 0 0 0 rgba(229,9,20,0) } 50% { box-shadow: 0 0 40px rgba(229,9,20,.35) } }
@@ -72,6 +72,90 @@
           </button>
         </div>
         <div class="anim-5 mt-4 text-xs text-white/60">30-day free trial • Ad free</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (3 plans) -->
+  <section id="plans" class="max-w-6xl mx-auto px-4 mt-10">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-fuchsia-700/20 via-indigo-700/20 to-blue-700/20 p-6 md:p-8 border border-white/10">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div class="max-w-xl">
+          <h3 class="text-3xl md:text-4xl font-extrabold leading-tight">
+            The Netflix you love — pick your plan.
+          </h3>
+          <p class="text-white/85 text-lg mt-2">
+            Simple options for every home. Cancel anytime.
+          </p>
+        </div>
+        <div class="text-xs text-white/60">
+          *Prices shown are placeholders. Update to current US pricing.
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Standard with ads -->
+        <div class="rounded-2xl p-5 bg-white/5 border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,.25)]">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🍿</span>
+            <h4 class="text-xl font-bold">Standard with ads</h4>
+          </div>
+          <div class="mt-3 text-3xl font-extrabold tracking-tight">
+            US$7.99<span class="text-base font-semibold text-white/70"> / month</span>
+          </div>
+          <ul class="mt-3 space-y-2 text-sm text-white/85">
+            <li>• Full catalog with ad breaks</li>
+            <li>• 1080p (Full HD)</li>
+            <li>• Watch on 2 devices at once</li>
+          </ul>
+          <a href="#" class="mt-4 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-white/90 font-semibold transition">
+            Learn More
+          </a>
+        </div>
+
+        <!-- Standard (Most popular) -->
+        <div class="rounded-2xl p-5 bg-white/10 border border-white/10 shadow-[0_10px_40px_rgba(229,9,20,.25)] relative">
+          <span class="absolute -top-3 left-5 text-[11px] px-2 py-1 rounded-full bg-red-600 text-white font-semibold">
+            Most popular
+          </span>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">⭐</span>
+            <h4 class="text-xl font-bold">Standard</h4>
+          </div>
+          <div class="mt-3 text-3xl font-extrabold tracking-tight">
+            US$15.49<span class="text-base font-semibold text-white/70"> / month</span>
+          </div>
+          <ul class="mt-3 space-y-2 text-sm text-white/85">
+            <li>• No ads</li>
+            <li>• 1080p (Full HD)</li>
+            <li>• Watch on 2 devices at once</li>
+            <li>• Downloads on 2 devices</li>
+          </ul>
+          <a href="#cta" class="mt-4 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold transition">
+            Start Free
+          </a>
+        </div>
+
+        <!-- Premium -->
+        <div class="rounded-2xl p-5 bg-white/5 border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,.25)]">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">💎</span>
+            <h4 class="text-xl font-bold">Premium</h4>
+          </div>
+          <div class="mt-3 text-3xl font-extrabold tracking-tight">
+            US$22.99<span class="text-base font-semibold text-white/70"> / month</span>
+          </div>
+          <ul class="mt-3 space-y-2 text-sm text-white/85">
+            <li>• No ads</li>
+            <li>• 4K + HDR</li>
+            <li>• Watch on 4 devices at once</li>
+            <li>• Downloads on 6 devices</li>
+            <li>• Spatial audio</li>
+          </ul>
+          <a href="#cta" class="mt-4 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-white/90 font-semibold transition">
+            Learn More
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -141,7 +225,7 @@
     </div>
   </div>
   <audio id="reveal-sound" src="reveal.mp3" preload="auto"></audio>
-  <!-- (Add a short whoosh/ta-dum file named reveal.mp3 in the same folder if you want sound) -->
+  <!-- Put a short whoosh/ta-dum as reveal.mp3 next to this file -->
 
   <script>
     // Parallax
@@ -157,7 +241,7 @@
       onScroll();
     }
 
-    // Trending (with images)
+    // Trending with images (sample URLs)
     const trending = [
       { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Record-Breaking Show.", img: "https://www.billboard.com/wp-content/uploads/2025/07/kpop-demon-hunters-billboard-1800.jpg?w=942&h=628&crop=1" },
       { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it.", img: "https://image.tmdb.org/t/p/w500/bridgerton.jpg" },
@@ -281,7 +365,17 @@
     const resultBody = document.getElementById('result-body');
     const closeResult = document.getElementById('close-result');
 
-    // ===== Cinematic reveal on submit =====
+    // ===== Cinematic reveal on submit (audio AFTER reveal) =====
+    let playedReveal = false;
+    function playRevealOnce() {
+      const revealSound = document.getElementById('reveal-sound');
+      if (!playedReveal && revealSound && revealSound.play) {
+        playedReveal = true;
+        revealSound.currentTime = 0;
+        revealSound.play().catch(() => {});
+      }
+    }
+
     submitBtn.addEventListener('click', () => {
       const counts = { COZY:0, THRILL:0, FAMILY:0, MIND:0 };
       picks.forEach(k => counts[k]++);
@@ -314,49 +408,35 @@
         recGrid.appendChild(el);
       });
 
-      // Transition overlay + sound
+      // Transition overlay
       const transitionScreen = document.getElementById('result-transition');
       const progress = document.getElementById('transition-progress');
-      const revealSound = document.getElementById('reveal-sound');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       // hide quiz modal
       modal.classList.add('hidden'); modal.classList.remove('flex');
 
-      // reset progress + show transition
+      // reset + show transition
+      playedReveal = false; // reset guard
       progress.style.width = '0%';
       transitionScreen.classList.remove('hidden'); transitionScreen.classList.add('flex');
 
-
-      // little emoji confetti pop (no deps)
-      (() => {
-        const burst = document.createElement('div');
-        burst.className = 'pointer-events-none fixed inset-0 z-[50] flex items-center justify-center';
-        burst.innerHTML = '<div class="text-4xl select-none">🎉 🎬 🍿 ✨</div>';
-        document.body.appendChild(burst);
-        setTimeout(() => burst.remove(), 900);
-      })();
-
-      // after duration, hide transition, show result
+      // after duration, hide transition, show result, then play sound
       const DUR = reduceMotion ? 300 : 1700;
       setTimeout(() => {
-        // hide loading screen
-        transitionScreen.classList.add('hidden');
-        transitionScreen.classList.remove('flex');
-        
-        // show results
-        resultModal.classList.remove('hidden');
-        resultModal.classList.add('flex');
-        
-        // play sound AFTER results appear
-        if (revealSound && revealSound.play) {
-          revealSound.currentTime = 0;
-          revealSound.play().catch(() => {});
-        }
+        transitionScreen.classList.add('hidden'); transitionScreen.classList.remove('flex');
+        resultModal.classList.remove('hidden'); resultModal.classList.add('flex');
+
+        // play AFTER reveal
+        playRevealOnce();
       }, DUR);
     });
 
-    closeResult.addEventListener('click', () => { resultModal.classList.add('hidden'); resultModal.classList.remove('flex'); });
+    closeResult.addEventListener('click', () => {
+      resultModal.classList.add('hidden'); resultModal.classList.remove('flex');
+      const revealSound = document.getElementById('reveal-sound');
+      if (revealSound) { revealSound.pause(); revealSound.currentTime = 0; }
+    });
 
     // ESC closes modals
     window.addEventListener('keydown', (e) => {
