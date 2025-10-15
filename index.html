@@ -92,8 +92,8 @@
     <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-fuchsia-700/15 via-indigo-700/15 to-blue-700/15 p-5 md:p-6 border border-white/10">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div class="max-w-xl">
-          <h3 class="text-2xl md:text-3xl font-extrabold leading-tight">Choose your Netflix plan</h3>
-          <p class="text-white/80 text-base mt-1">Simple, flexible, and cancel anytime.</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-tight">Choose your plan</h3>
+          <p class="text-white/80 text-base mt-1">Simple, flexible, and accessible.</p>
         </div>
       </div>
 
@@ -120,7 +120,7 @@
             <span>⭐</span>
             <h4 class="text-lg font-bold">Standard</h4>
           </div>
-          <div class="mt-2 text-2xl font-bold">US$15.49 <span class="text-sm text-white/70">/mo</span></div>
+          <div class="mt-2 text-2xl font-bold">US$17.99 <span class="text-sm text-white/70">/mo</span></div>
           <ul class="mt-2 space-y-1 text-sm text-white/85">
             <li>• No ads</li>
             <li>• 1080p (Full HD)</li>
@@ -135,9 +135,9 @@
             <span>💎</span>
             <h4 class="text-lg font-bold">Premium</h4>
           </div>
-          <div class="mt-2 text-2xl font-bold">US$22.99 <span class="text-sm text-white/70">/mo</span></div>
+          <div class="mt-2 text-2xl font-bold">US$24.99 <span class="text-sm text-white/70">/mo</span></div>
           <ul class="mt-2 space-y-1 text-sm text-white/85">
-            <li>• 4K + HDR</li>
+            <li>• 4K (Ultra HD) + HDR</li>
             <li>• 4 devices</li>
             <li>• Spatial audio</li>
           </ul>
@@ -160,14 +160,29 @@
   <section class="py-12"></section>
 
   <!-- Sticky CTA -->
-  <div id="cta" class="fixed inset-x-0 bottom-0 z-30 pb-[max(16px,env(safe-area-inset-bottom))]">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="sticky-cta rounded-2xl border border-white/10 p-3 flex items-center justify-between gap-3">
-        <div class="text-sm text-white/85">Start your 30-day free trial. Cancel anytime.</div>
-        <a href="#" class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 font-semibold shadow-lg shadow-red-600/20 transition">Start Watching Free</a>
+  <div id="cta" class="fixed inset-x-0 bottom-0 z-30 pb-[max(8px,env(safe-area-inset-bottom))]">
+    <div class="max-w-6xl mx-auto px-2 md:px-4">
+      <div
+        class="sticky-cta rounded-lg md:rounded-2xl border border-white/10
+             p-2 md:p-3
+             flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-3">
+      
+        <div class="text-xs md:text-sm text-white/85 leading-tight">
+          Start your 30-day free trial. Cancel anytime.
+        </div>
+
+        <a href="#"
+           class="w-full md:w-auto text-center
+                  px-4 py-2 md:px-6 md:py-3
+                  text-sm md:text-base
+                  rounded-lg md:rounded-xl
+                  bg-red-600 hover:bg-red-500 font-semibold
+                  shadow-lg shadow-red-600/20 transition">
+            Start Watching Free
+          </a>
+        </div>
       </div>
     </div>
-  </div>
 
   <!-- Quiz Modal -->
   <div id="quiz-modal" class="modal fixed inset-0 z-40 hidden items-center justify-center p-4">
