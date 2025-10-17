@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- note viewport-fit=cover for iPhone safe areas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Find Your Streaming Style • Prototype</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -82,7 +83,7 @@
             Find Your Streaming Style
           </button>
         </div>
-        <div class="anim-5 mt-4 text-xs text-white/60">30-day free trial • No ads on Premium </div>
+        <div class="anim-5 mt-4 text-xs text-white/60">30-day free trial • No ads on Premium</div>
       </div>
     </div>
   </section>
@@ -162,57 +163,48 @@
   <!-- Sticky CTA -->
   <div id="cta" class="fixed inset-x-0 bottom-0 z-30 pb-[max(8px,env(safe-area-inset-bottom))]">
     <div class="max-w-6xl mx-auto px-2 md:px-4">
-      <div
-        class="sticky-cta rounded-lg md:rounded-2xl border border-white/10
-             p-2 md:p-3
-             flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-3">
-      
-        <div class="text-xs md:text-sm text-white/85 leading-tight">
-          Start your 30-day free trial. Cancel anytime.
-        </div>
-
-        <a href="#"
-           class="w-full md:w-auto text-center
-                  px-4 py-2 md:px-6 md:py-3
-                  text-sm md:text-base
-                  rounded-lg md:rounded-xl
-                  bg-red-600 hover:bg-red-500 font-semibold
-                  shadow-lg shadow-red-600/20 transition">
-            Start Watching Free
-          </a>
-        </div>
-      </div>
-    </div>
-
-  <!-- Quiz Modal -->
-  <div id="quiz-modal" class="modal fixed inset-0 z-40 hidden items-center justify-center p-4">
-    <div class="max-w-xl w-full rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl overflow-hidden">
-      <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
-        <h3 class="text-lg font-bold">Find Your Streaming Style</h3>
-        <button id="close-quiz" class="text-white/70 hover:text-white text-xl leading-none">×</button>
-      </div>
-      <div class="p-5">
-        <div id="quiz-progress" class="text-xs text-white/60 mb-3">Question 1 of 5</div>
-        <div id="quiz-question" class="text-base md:text-lg font-semibold">Loading…</div>
-        <div id="quiz-choices" class="mt-4 grid gap-2"></div>
-        <div class="mt-5 flex items-center justify-between">
-          <button id="quiz-prev" class="px-4 py-2 rounded-lg border border-white/20 text-white/85 hover:border-white hidden">Back</button>
-          <div class="flex-1"></div>
-          <button id="quiz-next" class="px-5 py-2 rounded-lg bg-white text-black font-semibold">Next</button>
-          <button id="quiz-submit" class="px-5 py-2 rounded-lg bg-red-600 text-white font-semibold hidden">See Results</button>
-        </div>
+      <div class="sticky-cta rounded-lg md:rounded-2xl border border-white/10 p-2 md:p-3 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-3">
+        <div class="text-xs md:text-sm text-white/85 leading-tight">Start your 30-day free trial. Cancel anytime.</div>
+        <a href="#" class="w-full md:w-auto text-center px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg md:rounded-xl bg-red-600 hover:bg-red-500 font-semibold shadow-lg shadow-red-600/20 transition">Start Watching Free</a>
       </div>
     </div>
   </div>
 
-  <!-- Result Modal -->
-  <div id="result-modal" class="modal fixed inset-0 z-40 hidden items-center justify-center p-4">
-    <div class="max-w-xl w-full rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl overflow-hidden">
-      <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
-        <h3 class="text-lg font-bold">Your Streaming Style</h3>
-        <button id="close-result" class="text-white/70 hover:text-white text-xl leading-none">×</button>
+  <!-- Quiz Modal (TOP-ANCHORED, SCROLLABLE, STICKY HEADER) -->
+  <div id="quiz-modal" class="modal fixed inset-0 z-50 hidden items-start justify-center p-2 sm:p-4">
+    <div class="relative w-full max-w-sm sm:max-w-xl max-h-[100dvh] sm:max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl">
+      <div class="sticky top-0 z-10 bg-zinc-900/95 backdrop-blur border-b border-white/10">
+        <div class="px-4 py-3 sm:px-5 sm:py-4 flex items-center justify-between">
+          <h3 class="text-base sm:text-lg font-bold">Find Your Streaming Style</h3>
+          <button id="close-quiz" class="h-10 w-10 -mr-1 rounded-full flex items-center justify-center text-white/80 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Close quiz">×</button>
+        </div>
       </div>
-      <div class="p-5" id="result-body"></div>
+      <div class="p-4 sm:p-5">
+        <div id="quiz-progress" class="text-xs text-white/60 mb-2 sm:mb-3">Question 1 of 5</div>
+        <div id="quiz-question" class="text-base sm:text-lg font-semibold">Loading…</div>
+        <div id="quiz-choices" class="mt-3 sm:mt-4 grid gap-2"></div>
+        <div class="mt-4 sm:mt-5 flex items-center justify-between gap-2">
+          <button id="quiz-prev" class="px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-white/20 text-white/85 hover:border-white hidden">Back</button>
+          <div class="flex-1"></div>
+          <button id="quiz-next" class="px-4 py-2 rounded-lg bg-white text-black font-semibold">Next</button>
+          <button id="quiz-submit" class="px-4 py-2 rounded-lg bg-red-600 text-white font-semibold hidden">See Results</button>
+        </div>
+        <div class="h-[max(12px,env(safe-area-inset-bottom))]"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Modal (TOP-ANCHORED, SCROLLABLE, STICKY HEADER) -->
+  <div id="result-modal" class="modal fixed inset-0 z-50 hidden items-start justify-center p-2 sm:p-4">
+    <div class="relative w-full max-w-sm sm:max-w-xl max-h-[100dvh] sm:max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl">
+      <div class="sticky top-0 z-10 bg-zinc-900/95 backdrop-blur border-b border-white/10">
+        <div class="px-4 py-3 sm:px-5 sm:py-4 flex items-center justify-between">
+          <h3 class="text-base sm:text-lg font-bold">Your Streaming Style</h3>
+          <button id="close-result" class="h-10 w-10 -mr-1 rounded-full flex items-center justify-center text-white/80 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Close results">×</button>
+        </div>
+      </div>
+      <div class="p-4 sm:p-5" id="result-body"></div>
+      <div class="h-[max(12px,env(safe-area-inset-bottom))]"></div>
     </div>
   </div>
 
@@ -227,7 +219,6 @@
     </div>
   </div>
   <audio id="reveal-sound" src="reveal.mp3" preload="auto"></audio>
-  <!-- Put a short whoosh/ta-dum as reveal.mp3 next to this file -->
 
   <script>
     // Parallax
@@ -245,11 +236,11 @@
 
     // Trending (sample images; replace as desired)
     const trending = [
-      { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Record-Breaking Show.", img: "https://deadline.com/wp-content/uploads/2025/08/KpopDemonHunters_ProRes422HQ_SDR_2ch_20250424.01_04_39_22.jpg?w=681&h=383&crop=1q=80&w=1200&auto=format&fit=crop" },
-      { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it.", img: "https://occ-0-8407-90.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABdntftE8kns59uKevg89atbv8iVS1rgd7qDpzCrsgRQYC_wYoBH69fyz_XcsPUVVRdus-T7skIsclGlCUEgYJYwmLZ5ZrAvjJuRr.jpg?r=489q=80&w=1200&auto=format&fit=crop" },
-      { title: "Wednesday", note: "#3 in the U.S.", views: "1.7M", blurb: "Trending for 3 weeks.", img: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQYoEpTjSUzAvWDUDxxNgMeKt_Om2XIzoof3hHlqiSEQk1wTMFPU3DCshYyrUYZAEqhtbHiIUTTxiy7tmJg_R8PesXAo-Jxeu1Z9l75603YuBjGuxGaeTZSXUVucQA57eRx1dGMnLV3VnckFJ-NtivOp4-0c.jpg?r=414q=80&w=1200&auto=format&fit=crop" },
-      { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king.", img: "https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABVOeq9CICIITupj8v8mDDTtawuXQhtd6EIiwbhxK6MH8gj1k2t04edh5qjTqyuQ8m0n9wKt91CzNeLKMuinIlcB0ok9jphfyVhk9.jpg?r=2fdq=80&w=1200&auto=format&fit=crop" },
-      { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues.", img: "https://media.vanityfair.com/photos/5f5245d91e10df7a77868af6/4:3/w_1776,h_1332,c_limit/avatar-the-last-airbender.jpgq=80&w=1200&auto=format&fit=crop" }
+      { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Record-Breaking Show.", img: "https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?q=80&w=1200&auto=format&fit=crop" },
+      { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it.", img: "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=1200&auto=format&fit=crop" },
+      { title: "Wednesday", note: "#3 in the U.S.", views: "1.7M", blurb: "Trending for 3 weeks.", img: "https://images.unsplash.com/photo-1495567720989-cebdbdd97913?q=80&w=1200&auto=format&fit=crop" },
+      { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king.", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" },
+      { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues.", img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200&auto=format&fit=crop" }
     ];
     const tgrid = document.getElementById('trending5');
     function tcard({ title, note, views, blurb, img }) {
@@ -273,7 +264,9 @@
     }
     trending.forEach(item => tgrid.appendChild(tcard(item)));
 
-    // Quiz data
+    /* ===========================
+       QUIZ DATA (with image recs)
+       =========================== */
     const styles = {
       COZY: {
         name: "Cozy Rewatcher",
@@ -348,7 +341,7 @@
 
     let idx = 0;
     const picks = [];
-    const modal = document.getElementById('quiz-modal');
+    const quizModal = document.getElementById('quiz-modal');
     const openBtn = document.getElementById('open-quiz');
     const closeBtn = document.getElementById('close-quiz');
     const qEl = document.getElementById('quiz-question');
@@ -365,7 +358,7 @@
       cEl.innerHTML = '';
       item.options.forEach((opt, i) => {
         const b = document.createElement('button');
-        b.className = 'choice w-full text-left px-4 py-3 rounded-xl border border-white/15 hover:border-white/35';
+        b.className = 'choice w-full text-left px-3 py-3 sm:px-4 sm:py-3 rounded-xl border border-white/15 hover:border-white/35';
         b.dataset.index = i;
         b.dataset.selected = (picks[idx] && picks[idx] === opt.style) ? 'true' : 'false';
         b.innerHTML = opt.label;
@@ -385,13 +378,36 @@
       submitBtn.classList.toggle('hidden', idx !== quiz.length - 1);
     }
 
+    // scroll lock helpers
+    function lockScroll() {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    }
+    function unlockScroll() {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+
+    // OPEN / CLOSE QUIZ
     openBtn.addEventListener('click', () => {
-      modal.classList.remove('hidden'); modal.classList.add('flex');
+      quizModal.classList.remove('hidden'); quizModal.classList.add('flex');
+      lockScroll();
       idx = 0; picks.length = 0;
       render();
     });
-    closeBtn.addEventListener('click', () => { modal.classList.add('hidden'); modal.classList.remove('flex'); });
-    modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); } });
+    closeBtn.addEventListener('click', () => {
+      quizModal.classList.add('hidden'); quizModal.classList.remove('flex');
+      unlockScroll();
+    });
+    quizModal.addEventListener('click', (e) => {
+      if (e.target === quizModal) {
+        quizModal.classList.add('hidden'); quizModal.classList.remove('flex');
+        unlockScroll();
+      }
+    });
+
     prevBtn.addEventListener('click', () => { if (idx > 0) { idx--; render(); } });
     nextBtn.addEventListener('click', () => { if (idx < quiz.length - 1) { idx++; render(); } });
 
@@ -451,13 +467,11 @@
       const progress = document.getElementById('transition-progress');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      modal.classList.add('hidden'); modal.classList.remove('flex');
-
-      playedReveal = false;                // reset guard
+      quizModal.classList.add('hidden'); quizModal.classList.remove('flex');
+      // keep scroll locked during transition + results
       progress.style.width = '0%';
       transitionScreen.classList.remove('hidden'); transitionScreen.classList.add('flex');
 
-      // after duration, show result then play sound
       const DUR = reduceMotion ? 300 : 1700;
       setTimeout(() => {
         transitionScreen.classList.add('hidden'); transitionScreen.classList.remove('flex');
@@ -468,6 +482,7 @@
 
     closeResult.addEventListener('click', () => {
       resultModal.classList.add('hidden'); resultModal.classList.remove('flex');
+      unlockScroll();
       const revealSound = document.getElementById('reveal-sound');
       if (revealSound) { revealSound.pause(); revealSound.currentTime = 0; }
     });
@@ -478,6 +493,7 @@
         document.getElementById('quiz-modal').classList.add('hidden');
         document.getElementById('result-modal').classList.add('hidden');
         document.getElementById('result-transition').classList.add('hidden');
+        unlockScroll();
       }
     });
   </script>
