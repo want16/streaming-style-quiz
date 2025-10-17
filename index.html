@@ -275,10 +275,42 @@
 
     // Quiz data
     const styles = {
-      COZY:   { name: "Cozy Rewatcher",  blurb: "You love familiar, feel-good stories that make the room warmer.", recs: ["Friends", "The Office", "Modern Family"] },
-      THRILL: { name: "Thrill Seeker",   blurb: "High stakes, high pace. You’re here for edge-of-seat nights.",    recs: ["Extraction", "Money Heist", "John Wick"] },
-      FAMILY: { name: "Feel-Good Family", blurb: "You want all ages cheering and laughing together.",               recs: ["Paddington", "The Mitchells vs The Machines", "Enola Holmes"] },
-      MIND:   { name: "Mind-Bender",     blurb: "Bold ideas and twisty plots keep you hooked.",                    recs: ["Black Mirror", "Dark", "Inception"] }
+      COZY: {
+        name: "Cozy Rewatcher",
+        blurb: "You love familiar, feel-good stories that make the room warmer.",
+        recs: [
+          { title: "Friends", img: "https://image.tmdb.org/t/p/w500/7buCWBTpiPrCF5Lt023dSC60rgS.jpg" },
+          { title: "The Office", img: "https://image.tmdb.org/t/p/w500/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg" },
+          { title: "Modern Family", img: "https://image.tmdb.org/t/p/w500/7S6pXbGZ4HzyBbs6k8ZZrVSu2Ce.jpg" }
+        ]
+      },
+      THRILL: {
+        name: "Thrill Seeker",
+        blurb: "High stakes, high pace. You’re here for edge-of-seat nights.",
+        recs: [
+          { title: "Extraction", img: "https://image.tmdb.org/t/p/w500/nygOUcBkFupUoMveUYoKzJG6odE.jpg" },
+          { title: "Money Heist", img: "https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg" },
+          { title: "John Wick", img: "https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg" }
+        ]
+      },
+      FAMILY: {
+        name: "Wholesome Family Time",
+        blurb: "You want all ages cheering and laughing together.",
+        recs: [
+          { title: "Paddington", img: "https://image.tmdb.org/t/p/w500/xy6wQ09rMIN2FfWphzK6L9i3rTn.jpg" },
+          { title: "The Mitchells vs The Machines", img: "https://image.tmdb.org/t/p/w500/mI2Di7HmskQQ34kz0iau6J1vr70.jpg" },
+          { title: "Enola Holmes", img: "https://image.tmdb.org/t/p/w500/riYInlsq2kf1AWoGm80JQW5dLKp.jpg" }
+        ]
+      },
+      MIND: {
+        name: "Mystery Master Mind",
+        blurb: "Bold ideas and twisty plots keep you hooked.",
+        recs: [
+          { title: "Black Mirror", img: "https://image.tmdb.org/t/p/w500/5UaYsGZOFhjFDwQh6GuLjjA1WlF.jpg" },
+          { title: "Dark", img: "https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABShpXoLjvYONIdvjP3LmSFYKRs9DhiOU5CJR1CEbnY7E2mCoc3mvelLC5WjxU3_eqnYPe0aE0e2MILoYIkS2mLmpuvD5hEMVGOeW.jpg?r=e0b" },
+          { title: "Inception", img: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" }
+        ]
+      }
     };
 
     const quiz = [
@@ -289,7 +321,7 @@
           { label: "Thought-provoking and twisty", style: "MIND" }
         ]},
       { q: "Pick a perfect setting:", options: [
-          { label: "Small town / slice of life", style: "COZY" },
+          { label: "Small town or slice of life", style: "COZY" },
           { label: "Heists, spies, or standoffs", style: "THRILL" },
           { label: "Adventure that’s fun for everyone", style: "FAMILY" },
           { label: "Sci-fi, mysteries, or mind games", style: "MIND" }
