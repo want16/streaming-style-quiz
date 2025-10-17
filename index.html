@@ -82,19 +82,20 @@
             Find Your Streaming Style
           </button>
         </div>
-        <div class="anim-5 mt-4 text-xs text-white/60">30-day free trial • No ads on Premium </div>
+        <div class="anim-5 mt-4 text-xs text-white/60">30-day free trial • Ad free</div>
       </div>
     </div>
   </section>
 
   <!-- PRICING (compact 3 plans) -->
-  <section id="plans" class="max-w-6xl mx-auto px-4 mt-10">
+  <section id="plans" class="max-w-5xl mx-auto px-4 mt-8">
     <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-fuchsia-700/15 via-indigo-700/15 to-blue-700/15 p-5 md:p-6 border border-white/10">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div class="max-w-xl">
-          <h3 class="text-2xl md:text-3xl font-extrabold leading-tight">Choose your plan</h3>
-          <p class="text-white/80 text-base mt-1">Simple, flexible, and accessible.</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-tight">Choose your Netflix plan</h3>
+          <p class="text-white/80 text-base mt-1">Simple, flexible, and cancel anytime.</p>
         </div>
+        <div class="text-xs text-white/60">*Prices are placeholders.</div>
       </div>
 
       <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -120,7 +121,7 @@
             <span>⭐</span>
             <h4 class="text-lg font-bold">Standard</h4>
           </div>
-          <div class="mt-2 text-2xl font-bold">US$17.99 <span class="text-sm text-white/70">/mo</span></div>
+          <div class="mt-2 text-2xl font-bold">US$15.49 <span class="text-sm text-white/70">/mo</span></div>
           <ul class="mt-2 space-y-1 text-sm text-white/85">
             <li>• No ads</li>
             <li>• 1080p (Full HD)</li>
@@ -135,9 +136,9 @@
             <span>💎</span>
             <h4 class="text-lg font-bold">Premium</h4>
           </div>
-          <div class="mt-2 text-2xl font-bold">US$24.99 <span class="text-sm text-white/70">/mo</span></div>
+          <div class="mt-2 text-2xl font-bold">US$22.99 <span class="text-sm text-white/70">/mo</span></div>
           <ul class="mt-2 space-y-1 text-sm text-white/85">
-            <li>• 4K (Ultra HD) + HDR</li>
+            <li>• 4K + HDR</li>
             <li>• 4 devices</li>
             <li>• Spatial audio</li>
           </ul>
@@ -162,27 +163,12 @@
   <!-- Sticky CTA -->
   <div id="cta" class="fixed inset-x-0 bottom-0 z-30 pb-[max(8px,env(safe-area-inset-bottom))]">
     <div class="max-w-6xl mx-auto px-2 md:px-4">
-      <div
-        class="sticky-cta rounded-lg md:rounded-2xl border border-white/10
-             p-2 md:p-3
-             flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-3">
-      
-        <div class="text-xs md:text-sm text-white/85 leading-tight">
-          Start your 30-day free trial. Cancel anytime.
-        </div>
-
-        <a href="#"
-           class="w-full md:w-auto text-center
-                  px-4 py-2 md:px-6 md:py-3
-                  text-sm md:text-base
-                  rounded-lg md:rounded-xl
-                  bg-red-600 hover:bg-red-500 font-semibold
-                  shadow-lg shadow-red-600/20 transition">
-            Start Watching Free
-          </a>
-        </div>
+      <div class="sticky-cta rounded-lg md:rounded-2xl border border-white/10 p-2 md:p-3 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-3">
+        <div class="text-xs md:text-sm text-white/85 leading-tight">Start your 30-day free trial. Cancel anytime.</div>
+        <a href="#" class="w-full md:w-auto text-center px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg md:rounded-xl bg-red-600 hover:bg-red-500 font-semibold shadow-lg shadow-red-600/20 transition">Start Watching Free</a>
       </div>
     </div>
+  </div>
 
   <!-- Quiz Modal -->
   <div id="quiz-modal" class="modal fixed inset-0 z-40 hidden items-center justify-center p-4">
@@ -227,7 +213,6 @@
     </div>
   </div>
   <audio id="reveal-sound" src="reveal.mp3" preload="auto"></audio>
-  <!-- Put a short whoosh/ta-dum as reveal.mp3 next to this file -->
 
   <script>
     // Parallax
@@ -245,11 +230,11 @@
 
     // Trending (sample images; replace as desired)
     const trending = [
-      { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Record-Breaking Show.", img: "https://deadline.com/wp-content/uploads/2025/08/KpopDemonHunters_ProRes422HQ_SDR_2ch_20250424.01_04_39_22.jpg?w=681&h=383&crop=1q=80&w=1200&auto=format&fit=crop" },
-      { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it.", img: "https://occ-0-8407-90.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABdntftE8kns59uKevg89atbv8iVS1rgd7qDpzCrsgRQYC_wYoBH69fyz_XcsPUVVRdus-T7skIsclGlCUEgYJYwmLZ5ZrAvjJuRr.jpg?r=489q=80&w=1200&auto=format&fit=crop" },
-      { title: "Wednesday", note: "#3 in the U.S.", views: "1.7M", blurb: "Trending for 3 weeks.", img: "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQYoEpTjSUzAvWDUDxxNgMeKt_Om2XIzoof3hHlqiSEQk1wTMFPU3DCshYyrUYZAEqhtbHiIUTTxiy7tmJg_R8PesXAo-Jxeu1Z9l75603YuBjGuxGaeTZSXUVucQA57eRx1dGMnLV3VnckFJ-NtivOp4-0c.jpg?r=414q=80&w=1200&auto=format&fit=crop" },
-      { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king.", img: "https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABVOeq9CICIITupj8v8mDDTtawuXQhtd6EIiwbhxK6MH8gj1k2t04edh5qjTqyuQ8m0n9wKt91CzNeLKMuinIlcB0ok9jphfyVhk9.jpg?r=2fdq=80&w=1200&auto=format&fit=crop" },
-      { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues.", img: "https://media.vanityfair.com/photos/5f5245d91e10df7a77868af6/4:3/w_1776,h_1332,c_limit/avatar-the-last-airbender.jpgq=80&w=1200&auto=format&fit=crop" }
+      { title: "Kpop Demon Hunters", note: "#1 in the U.S.", views: "2.4M", blurb: "Record-Breaking Show.", img: "https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?q=80&w=1200&auto=format&fit=crop" },
+      { title: "Bridgerton", note: "#2 in the U.S.", views: "1.9M", blurb: "Everyone’s talking about it.", img: "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=1200&auto=format&fit=crop" },
+      { title: "Wednesday", note: "#3 in the U.S.", views: "1.7M", blurb: "Trending for 3 weeks.", img: "https://images.unsplash.com/photo-1495567720989-cebdbdd97913?q=80&w=1200&auto=format&fit=crop" },
+      { title: "The Office (US)", note: "#4 in the U.S.", views: "1.4M", blurb: "Comfort rewatch king.", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" },
+      { title: "Avatar: The Last Airbender", note: "#5 in the U.S.", views: "1.2M", blurb: "Live-action hype continues.", img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200&auto=format&fit=crop" }
     ];
     const tgrid = document.getElementById('trending5');
     function tcard({ title, note, views, blurb, img }) {
@@ -273,16 +258,50 @@
     }
     trending.forEach(item => tgrid.appendChild(tcard(item)));
 
-    // Quiz data
+    /* ===========================
+       QUIZ DATA (with image recs)
+       =========================== */
     const styles = {
-      COZY:   { name: "Cozy Rewatcher",  blurb: "You love familiar, feel-good stories that make the room warmer.", recs: ["Friends", "The Office", "Modern Family"] },
-      THRILL: { name: "Thrill Seeker",   blurb: "High stakes, high pace. You’re here for edge-of-seat nights.",    recs: ["Extraction", "Money Heist", "John Wick"] },
-      FAMILY: { name: "Feel-Good Family", blurb: "You want all ages cheering and laughing together.",               recs: ["Paddington", "The Mitchells vs The Machines", "Enola Holmes"] },
-      MIND:   { name: "Mind-Bender",     blurb: "Bold ideas and twisty plots keep you hooked.",                    recs: ["Black Mirror", "Dark", "Inception"] }
+      COZY: {
+        name: "Cozy Rewatcher",
+        blurb: "You love familiar, feel-good stories that make the room warmer.",
+        recs: [
+          { title: "Friends", img: "https://image.tmdb.org/t/p/w500/7buCWBTpiPrCF5Lt023dSC60rgS.jpg" },
+          { title: "The Office", img: "https://image.tmdb.org/t/p/w500/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg" },
+          { title: "Modern Family", img: "https://image.tmdb.org/t/p/w500/7S6pXbGZ4HzyBbs6k8ZZrVSu2Ce.jpg" }
+        ]
+      },
+      THRILL: {
+        name: "Thrill Seeker",
+        blurb: "High stakes, high pace. You’re here for edge-of-seat nights.",
+        recs: [
+          { title: "Extraction", img: "https://image.tmdb.org/t/p/w500/nygOUcBkFupUoMveUYoKzJG6odE.jpg" },
+          { title: "Money Heist", img: "https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg" },
+          { title: "John Wick", img: "https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg" }
+        ]
+      },
+      FAMILY: {
+        name: "Feel-Good Family",
+        blurb: "You want all ages cheering and laughing together.",
+        recs: [
+          { title: "Paddington", img: "https://image.tmdb.org/t/p/w500/xy6wQ09rMIN2FfWphzK6L9i3rTn.jpg" },
+          { title: "The Mitchells vs The Machines", img: "https://image.tmdb.org/t/p/w500/mI2Di7HmskQQ34kz0iau6J1vr70.jpg" },
+          { title: "Enola Holmes", img: "https://image.tmdb.org/t/p/w500/riYInlsq2kf1AWoGm80JQW5dLKp.jpg" }
+        ]
+      },
+      MIND: {
+        name: "Mind-Bender",
+        blurb: "Bold ideas and twisty plots keep you hooked.",
+        recs: [
+          { title: "Black Mirror", img: "https://image.tmdb.org/t/p/w500/5UaYsGZOFhjFDwQh6GuLjjA1WlF.jpg" },
+          { title: "Dark", img: "https://image.tmdb.org/t/p/w500/7GgqJfU6Y4ZCkxzgv2Fne5DE5F7.jpg" },
+          { title: "Inception", img: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" }
+        ]
+      }
     };
 
     const quiz = [
-      { q: "What’s your ideal weekend vibe?", options: [
+      { q: "What’s your ideal weekend energy?", options: [
           { label: "Cozy and heartwarming", style: "COZY" },
           { label: "Adrenaline and action", style: "THRILL" },
           { label: "Family time together", style: "FAMILY" },
@@ -299,19 +318,19 @@
           { label: "Focused, lights off, full immersion", style: "THRILL" },
           { label: "With kids/parents/plus-ones", style: "FAMILY" },
           { label: "Solo, because I like to analyze", style: "MIND" }
-        ]},
+        ]}},
       { q: "Pick a mood for tonight:", options: [
           { label: "Warm laughs", style: "COZY" },
           { label: "Pulse-pounding", style: "THRILL" },
           { label: "Wholesome feels", style: "FAMILY" },
           { label: "Brainy suspense", style: "MIND" }
-        ]},
+        ]}},
       { q: "Series or movie?", options: [
           { label: "Movie — big energy, big payoff", style: "THRILL" },
-          { label: "Series — to binge and relax", style: "COZY" },
+          { label: "Either, as long as it’s comforting", style: "COZY" },
           { label: "Either, as long as we can watch together", style: "FAMILY" },
           { label: "Either, but clever is a must", style: "MIND" }
-        ]}
+        ]}}
     ];
 
     let idx = 0;
@@ -401,10 +420,16 @@
         + '</div>';
 
       const recGrid = resultBody.querySelector('#rec-grid');
-      style.recs.forEach(title => {
+      style.recs.forEach(({ title, img }) => {
         const el = document.createElement('div');
-        el.className = 'rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:scale-[1.02] transition';
-        el.innerHTML = '<div class="h-28 bg-gradient-to-tr from-red-600/40 via-fuchsia-600/30 to-indigo-600/30"></div><div class="p-3 text-sm font-semibold">'+title+'</div>';
+        el.className = 'group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:scale-[1.03] transition cursor-pointer';
+        el.innerHTML = `
+          <div class="relative h-32 overflow-hidden">
+            <img src="${img}" alt="${title}"
+                 class="absolute inset-0 w-full h-full object-cover brightness-90 group-hover:brightness-110 transition" />
+          </div>
+          <div class="p-2 text-sm font-semibold text-center">${title}</div>
+        `;
         recGrid.appendChild(el);
       });
 
